@@ -1,0 +1,7 @@
+vim
+gcc
+gfortran
+g++
+netcdf-bin
+nco
+cowsay

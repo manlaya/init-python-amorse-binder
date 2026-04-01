@@ -9,8 +9,9 @@ AEAP, Water Agency of Artois-Picardie).
 
 ## Try it in your browser
 
-➡️ **https://manlaya.github.io/init-python-amorse-binder/**
+➡️ **https://mybinder.org/v2/gh/manlaya/init-python-amorse-binder/main**
 
+Non interactive version: https://nbviewer.org/github/manlaya/init-python-amorse-binder/tree/main/notebooks/
 
 ## Disclaimer
 
