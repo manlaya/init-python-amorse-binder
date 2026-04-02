@@ -1,0 +1,28 @@
+% Beamer theme BRGM
+% add options (LANG_EN, colorfooter, dfont)
+% TODO: add default value and allow user value for colorfooter
+% https://tex.stackexchange.com/questions/144132/using-option-for-sty-file
+% https://tex.stackexchange.com/questions/38685/creating-beamer-themes-with-options
+
+% Declare options
+\newif\if@LangEN
+\@LangENfalse
+\DeclareOption{english}{\@LangENtrue}
+
+\newif\if@ColorFooter
+\@ColorFooterfalse
+\DeclareOption{colorfooter}{\@ColorFootertrue}
+
+% here False/True are volontary inversed
+% see fonttheme
+\newif\if@DFont
+\@DFonttrue
+\DeclareOption{dfont}{\@DFontfalse}
+
+\ProcessOptions
+
+% use all the differents components
+\usecolortheme{brgm}
+\usefonttheme{brgm}
+\useinnertheme{brgm}
+\useoutertheme{brgm}

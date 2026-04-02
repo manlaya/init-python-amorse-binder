@@ -1,0 +1,52 @@
+\definecolor{BrgmOrange}{RGB}{232,123,28} %#e87b1c / %cmk 0, 47, 88, 9
+\definecolor{BrgmBlue}{RGB}{1,91,126} %#015b7e
+\definecolor{MidnightBlue}{rgb}{0.098,0.098,0.439}
+\definecolor{DodgerBlue}{HTML}{1E90FF}
+\definecolor{LightBlue}{HTML}{4e95d9}
+\definecolor{mcitecolor}{RGB}{169,169,169} %some grey
+
+\mode<presentation>
+
+% Theme and title page colors
+\setbeamercolor{title page}{fg=white, bg=white}
+\setbeamercolor{structure}{fg=BrgmOrange}
+
+% Block style colors
+\setbeamercolor{block title}{bg=BrgmOrange,fg=white} % custom color for blocks
+\setbeamercolor{block body}{bg=structure!10}
+\setbeamercolor{block title alerted}{bg=alerted text.fg!20}
+\setbeamercolor{block body alerted}{bg=alerted text.fg!10}
+\setbeamercolor{block title example}{bg=green!20}
+\setbeamercolor{block body example}{bg=green!10}
+
+% reset Bibliography colors (do not use the orange from theme)
+\setbeamercolor*{bibliography entry title}{fg=gray}
+\setbeamercolor*{bibliography entry author}{fg=black}
+\setbeamercolor*{bibliography entry note}{fg=black}
+\setbeamercolor*{bibliography entry journal}{fg=black}
+
+% citing color
+\let\oldparencite\parencite
+\renewcommand{\parencite}[1]{\color{mcitecolor}{\oldparencite{#1}}\color{black}}
+\let\oldtextcite\textcite
+\renewcommand{\textcite}[1]{\color{mcitecolor}{\oldtextcite{#1}}\color{black}}
+\let\oldcite\cite
+\renewcommand{\cite}[1]{\color{mcitecolor}{\oldcite{#1}}\color{black}}
+
+% urlcolor
+\let\oldurl\url
+\renewcommand{\url}[1]{\color{blue}{\oldurl{#1}}\color{black}}
+
+
+% color for footer/header, activated with option
+% TODO: color as value of option colorfooter
+\if@ColorFooter
+    \setbeamercolor{section in head/foot}{bg=gray!15} %section in headers
+    \setbeamercolor{subsection in head/foot}{bg=gray!15} %section in headers
+    \setbeamercolor{title in head/foot}{fg=white, bg=gray!75} %<<<<<<<<<<<<<<<<
+    \setbeamercolor{author in head/foot}{fg=black, bg=gray!15} %<<<<<<<<<<<<<<<<
+    \setbeamercolor{date in head/foot}{fg=black, bg=gray!15} %<<<<<<<<<<<<<<<<
+\fi
+
+\mode
+<all>

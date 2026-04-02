@@ -1,0 +1,143 @@
+\usepackage{tikz}
+\mode<presentation>
+
+\useoutertheme[subsection=false]{miniframes} % default with singapore: header with toc
+
+\setbeamertemplate{navigation symbols}{} % supression des symboles de navigation
+
+% adapted from here: https://groups.google.com/g/comp.text.tex/c/ZNhlAu1Ptf4
+\newenvironment{transbox}[1]{%
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[
+            minimum width=#1\paperwidth,
+		    anchor=west,
+            text width=#1\textwidth,
+		    fill=black,
+            fill opacity=0.5,
+            text opacity=1
+        ] at (current page.west)
+        \bgroup
+	}{
+        \egroup;\end{tikzpicture}
+    }
+
+% default background if user does not provide command
+\providecommand{\titlebackgroundimage}{titlepage-background.jpg}
+
+\setbeamertemplate{title page}{
+    \begin{tikzpicture}[remember picture, overlay]
+        \node[at=(current page.center)] {
+            \includegraphics[
+                % width=\paperwidth,
+                % height=\paperheight
+                height=0.8\paperheight
+            ]{\titlebackgroundimage}
+        };
+	   \node[anchor=north east, xshift=-6pt, yshift=-10pt] at (current page.north east){
+            \if@LangEN
+                \includegraphics[scale=0.12]{logo-brgm-en-white.png}
+            \else
+                % \includegraphics[scale=0.12]{logo-brgm-fr-white.png}
+                \includegraphics[scale=0.12]{logo-brgm-fr.png}
+            \fi
+        };
+	   \node[anchor=north west, xshift=6pt, yshift=-3pt] at (current page.north west){
+            \includegraphics[scale=0.35]{Logo_Etat_fond_blanc.png}
+        };
+	\end{tikzpicture}
+    \vfill
+	\begin{transbox}{1}
+        \textbf{\large \inserttitle}\par
+        \vspace{3pt}
+	    \ifx \insertsubtitle\@empty%
+	    \else%
+	    {
+            {\textit{\normalsize \insertsubtitle}\par}
+        }
+	    \fi%
+        \vspace{10pt}
+	    \usebeamerfont{author}{\normalsize \insertauthor\par
+        \textit{Sur la base des travaux de Farid Smaï, Théophile Guillon, Jean-Pierre Vergnes (BRGM), Michael Fienen (USGS)}\par%
+        }
+        \vspace{5pt}
+        \usebeamerfont{date}{\small \insertdate\par}
+        \vspace{10pt}
+        \ifx\insertinstitute\@empty% memo: also possible insertshortinstitute
+        \else%
+        {
+            {\small \insertinstitute\par}
+        }
+        \fi%
+        \vfill
+    \end{transbox}
+}
+
+% if inside tabular not working -> move here as a command
+\if@LangEN
+    \newcommand{\textbrgm}{\textbf{BRGM} -- French Geological Survey -- \textbf{\color{black}\href{https://www.brgm.fr/en}{www.brgm.fr/en}}}
+\else
+    \newcommand{\textbrgm}{\textbf{BRGM} -- Service Géologique National -- \textbf{\color{black}\href{https://www.brgm.fr}{www.brgm.fr}}}
+\fi
+
+\setbeamertemplate{footline}{
+    \ifnum \theframenumber=1
+        % This is the title frame, do nothing
+    \else
+        \if@ColorFooter
+        % here we activate 3 columns with brgm text/url at left, title in middle and pages at right
+        {
+        \leavevmode%
+        \hbox{%
+            \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+                \usebeamerfont{author in head/foot}
+                \textbrgm
+            \end{beamercolorbox}%
+            \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+                \usebeamerfont{title in head/foot}
+                \insertshorttitle
+            \end{beamercolorbox}%
+            \begin{beamercolorbox}[wd=.2\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+                \usebeamerfont{date in head/foot}
+                \insertframenumber\hspace{1pt}/\hspace{1pt}\inserttotalframenumber\hspace*{4ex}%\hspace*{2ex}
+            \end{beamercolorbox}
+        }%
+        \vskip0pt%
+        }
+
+        \else
+        
+        % default case, 2 columns : left brgm text/url, middle = pages. leave right corner for logo
+        \vbox{
+            \begin{tabular}{p{0.33\textwidth} p{0.33\textwidth}}
+                \textbrgm &
+                \centering
+                \insertframenumber %
+                \hspace{1pt}/\hspace{1pt}%
+                \inserttotalframenumber
+            \end{tabular}
+            \vspace*{5pt}
+        }
+
+        \fi
+    \fi
+}
+
+\if@ColorFooter
+    \newcommand{\ypos}{10pt}
+\else
+    \newcommand{\ypos}{0pt}
+\fi
+\setbeamertemplate{logo}{
+    \begin{tikzpicture}[remember picture, overlay]
+	   \node[anchor=south east, xshift=-10pt, yshift=\ypos] at (current page.south east){
+            \if@LangEN
+                \includegraphics[scale=0.1]{logo-brgm-en}
+            \else
+                \includegraphics[scale=0.1]{logo-brgm-fr}
+            \fi
+        };
+	\end{tikzpicture}
+}
+
+\mode
+<all>

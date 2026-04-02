@@ -1,0 +1,10 @@
+Presentation initiation python - projet AMORSE (BRGM-AEAP)
+==========================================================
+
+main.tex : fichier principal
+Makefile : pour compiler le fichier principal
+fig/ : dossier contenant les figures
+beamertheme-brgm/ : dossier contenant le thème beamer BRGM
+    ce template a été développé par A. Manlay (BRGM) et modifié par JP Vergnes (BRGM)
+    photos (back cover): (c) A. Manlay
+    logos: (c) BRGM

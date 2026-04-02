@@ -1,0 +1,57 @@
+% -------- import packages
+\usepackage[utf8]{inputenc}     % gestion encodage
+\usepackage{csquotes}           % gestion warnings
+\usepackage[english]{babel}     % gestion lang
+% \usepackage[T1]{fontenc}
+
+\usepackage{tikz}
+
+% ---- config pour usage local du theme brgm
+% siouxerie pour utiliser en local
+% à garder avant bib config - authoryearbrack style is in theme path
+\makeatletter
+\def\input@path{{beamertheme-brgm/}}
+\makeatother
+% 2e souxerie pour les logos/background en plus des sty
+\usepackage{graphicx} % normalement déjà chargé avec beamer
+\graphicspath{{beamertheme-brgm/}}
+% sinon, placer le theme dans ~/texmf/tex/latex/beamertheme-brgm
+% puis juste \usetheme
+
+
+% ---- BIB params
+\usepackage[
+    backend=biber,
+    bibstyle=authoryear,
+    citestyle=authoryearbrack,
+    giveninits=true,
+    dashed=false,
+    sorting=nyt,
+    maxbibnames=20,
+    date=year,
+    uniquename=init,
+    url=false
+]{biblatex}
+% family upper case because of french : https://tex.stackexchange.com/questions/438423/keep-lowercase-in-biblatex
+\DefineBibliographyExtras{french}{\restorecommand\mkbibnamefamily}
+% \setbeamertemplate{bibliography item}{}  % remove icons in bib
+
+
+\makeatletter
+\def\beamer@andtitle{\unskip, }  % replaces \and between author names (original definition is \quad)
+\def\beamer@andinst{\quad}       % replaces \and between institutions (original definition is \\[1em])
+\makeatother
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+% default url in blue
+% \hypersetup{
+%     urlcolor=blue,
+%     breaklinks=true
+% }
+% \urlstyle{same}  % don't use monospace font for urls
